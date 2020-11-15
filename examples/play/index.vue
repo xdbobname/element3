@@ -1,43 +1,24 @@
 <template>
-  <el-button
-          plain
-          @click="open1">
-    可自动关闭
-  </el-button>
-  <el-button
-          plain
-          @click="open2">
-    不会自动关闭
-  </el-button>
-  <el-button
-          plain
-          @click="close">
-    全部关闭
-  </el-button>
+  <el-radio-group v-model="tabPosition" style="margin-bottom: 30px;">
+    <el-radio-button label="top">top</el-radio-button>
+    <el-radio-button label="right">right</el-radio-button>
+    <el-radio-button label="bottom">bottom</el-radio-button>
+    <el-radio-button label="left">left</el-radio-button>
+  </el-radio-group>
+
+  <el-tabs :tab-position="tabPosition" style="height: 200px;">
+    <el-tab-pane label="用户管理">用户管理</el-tab-pane>
+    <el-tab-pane label="配置管理">配置管理</el-tab-pane>
+    <el-tab-pane label="角色管理">角色管理</el-tab-pane>
+    <el-tab-pane label="定时任务补偿">定时任务补偿</el-tab-pane>
+  </el-tabs>
 </template>
-
 <script>
-  import {h} from 'vue'
   export default {
-    methods: {
-      open1() {
-
-        this.$notify({
-          title: '标题名称',
-          message: h('i', { style: 'color: teal'}, '这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案')
-        });
-      },
-
-      open2() {
-        this.$notify({
-          title: '提示',
-          message: '这是一条不会自动关闭的消息',
-          duration: 0
-        });
-      },
-      close(){
-        this.$notify.closeAll();
-      }
+    data() {
+      return {
+        tabPosition: 'top'
+      };
     }
-  }
+  };
 </script>
